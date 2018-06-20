@@ -1,0 +1,44 @@
+{
+  "name": "next-artemis",
+  "version": "1.0.0",
+  "description": "A companion for your Next.js app using Apollo",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm run test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/scottdj92/next-artemis.git"
+  },
+  "keywords": [
+    "Apollo",
+    "React",
+    "Next.js"
+  ],
+  "author": "Scott Jones",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/scottdj92/next-artemis/issues"
+  },
+  "homepage": "https://github.com/scottdj92/next-artemis#readme",
+  "devDependencies": {
+    "@types/next": "^6.0.1",
+    "@types/react": "^16.4.1",
+    "@types/react-dom": "^16.0.6",
+    "enzyme": "^3.3.0",
+    "jest": "^23.1.0",
+    "parcel-bundler": "^1.9.2",
+    "react": "^16.4.1",
+    "react-dom": "^16.4.1",
+    "tslint": "^5.10.0",
+    "typescript": "^2.9.2"
+  },
+  "dependencies": {
+    "apollo-cache-inmemory": "^1.2.5",
+    "apollo-client": "^2.3.5",
+    "apollo-link-http": "^1.5.4",
+    "isomorphic-unfetch": "^2.0.0",
+    "next": "^6.0.3",
+    "react-apollo": "^2.1.6"
+  }
+}
