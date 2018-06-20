@@ -5,8 +5,7 @@ import fetch from "isomorphic-unfetch";
 import getConfig from "next/config";
 
 const { publicRuntimeConfig } = getConfig();
-
-let apolloClient = null;
+let artemisClient = null;
 const isBrowser = typeof window !== undefined;
 
 if (!isBrowser) {
@@ -15,7 +14,7 @@ if (!isBrowser) {
 
 export type ArtemisState<T extends {}> = T;
 
-function createArtemis<T>(initialState: ArtemisState<T>) {
+function createArtemis<T>(initialState: ArtemisState<T>): ApolloClient<any> {
     return new ApolloClient({
         connectToDevTools: isBrowser,
         ssrMode: !isBrowser,
@@ -27,16 +26,16 @@ function createArtemis<T>(initialState: ArtemisState<T>) {
     });
 }
 
-export default function initArtemis<T>(initialState: ArtemisState<T>) {
+export default function initArtemis<T>(initialState: ArtemisState<T>): ApolloClient<T> {
     // create a new client for each server-side request
     // avoids shared data connections
     if (!isBrowser) {
         return createArtemis(initialState);
     }
 
-    if (!apolloClient) {
-        apolloClient = createArtemis(initialState);
+    if (!artemisClient) {
+        artemisClient = createArtemis(initialState);
     }
 
-    return apolloClient;
+    return artemisClient;
 }

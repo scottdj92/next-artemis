@@ -1,12 +1,22 @@
-import initArtemis from "./initArtemis";
+import initArtemis, { ArtemisState } from "./initArtemis";
 import Head from "next/head";
 import { getDataFromTree } from "react-apollo";
 import React from "react";
+import { ApolloClient } from "apollo-client";
 
 const isBrowser = typeof window !== undefined;
 
+interface IProps<T> {
+    artemisClient: ApolloClient<ArtemisState<T>>;
+    artemisState: ArtemisState<T>;
+}
+
+interface IArtemisMembers<T> {
+    artemisClient: ApolloClient<ArtemisState<T>>;
+}
+
 export default (App) => {
-    return class Artemis extends React.Component {
+    return class Artemis<T extends IArtemisMembers<T>> extends React.Component<IProps<T>, {}> {
         public static displayName = "withArtemis(App)";
         public static async getInitialProps(ctx) {
             const { Component, router } = ctx;
@@ -17,7 +27,8 @@ export default (App) => {
             }
 
             const artemisState = {};
-            const artemis = initArtemis();
+            // TODO: don't pass in an empty object here
+            const artemis = initArtemis({});
             try {
                 await getDataFromTree(
                     <App
@@ -39,6 +50,7 @@ export default (App) => {
                 Head.rewind();
             }
 
+            // TODO: add types to ArtemisState to capture `data`
             artemisState.data = artemis.cache.extract();
 
             return {
@@ -53,7 +65,7 @@ export default (App) => {
         }
 
         public render() {
-            return <App {...this.props} artemisClient={this.artemisClient}/>
+            return <App {...this.props} artemisClient={this.artemisClient}/>;
         }
     };
 };
