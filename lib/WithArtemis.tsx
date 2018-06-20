@@ -7,12 +7,12 @@ const isBrowser = typeof window !== undefined;
 
 export default (App) => {
     return class Artemis extends React.Component {
-        static displayName = "withArtemis(App)";
-        static async getInitialProps(ctx) {
+        public static displayName = "withArtemis(App)";
+        public static async getInitialProps(ctx) {
             const { Component, router } = ctx;
 
             let appProps = {};
-            if(App.getInitialProps) {
+            if (App.getInitialProps) {
                 appProps = await App.getInitialProps(ctx);
             }
 
@@ -26,9 +26,10 @@ export default (App) => {
                         router={router}
                         apolloState={artemisState}
                         apolloClient={artemis}
-                    />
+                    />,
                 );
             } catch (error) {
+                // tslint:disable-next-line:no-console
                 console.error("Error while running `getDataFromTree`", error);
             }
 
@@ -51,8 +52,8 @@ export default (App) => {
             this.artemisClient = props.artemisClient || initArtemis(props.artemisState.data);
         }
 
-        render() {
+        public render() {
             return <App {...this.props} artemisClient={this.artemisClient}/>
         }
-    }
-}
+    };
+};

@@ -13,19 +13,21 @@ if (!isBrowser) {
     global.fetch = fetch;
 }
 
-function createArtemis(initialState) {
+export type ArtemisState<T extends {}> = T;
+
+function createArtemis<T>(initialState: ArtemisState<T>) {
     return new ApolloClient({
         connectToDevTools: isBrowser,
         ssrMode: !isBrowser,
         link: new HttpLink({
             uri: publicRuntimeConfig.graphQLEndpoint,
-            credentials: "same-origin"
+            credentials: "same-origin",
         }),
-        cache: new InMemoryCache().restore(initialState || {})
-    })
+        cache: new InMemoryCache().restore(initialState || {}),
+    });
 }
 
-export default function initArtemis(initialState) {
+export default function initArtemis<T>(initialState: ArtemisState<T>) {
     // create a new client for each server-side request
     // avoids shared data connections
     if (!isBrowser) {
