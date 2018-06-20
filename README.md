@@ -13,4 +13,5 @@ A companion for your Apollo app with Next.js
 ## Contributing
 Run the example project in `example` with `npm run dev`
 
+# This package is currently under development
 # Pull Requests are greatly appreciated!
