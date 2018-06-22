@@ -16,8 +16,9 @@ interface IArtemisMembers<T> {
 }
 
 export default (App) => {
-    return class Artemis<T extends IArtemisMembers<T>> extends React.Component<IProps<T>, {}> {
+    return class Artemis<T extends IArtemisMembers<any>> extends React.Component<IProps<T>, {}> {
         public static displayName = "withArtemis(App)";
+        public static artemisClient;
         public static async getInitialProps(ctx) {
             const { Component, router } = ctx;
 
@@ -26,9 +27,9 @@ export default (App) => {
                 appProps = await App.getInitialProps(ctx);
             }
 
-            const artemisState = {};
+            let artemisState = {};
             // TODO: don't pass in an empty object here
-            const artemis = initArtemis({});
+            const artemis = initArtemis();
             try {
                 await getDataFromTree(
                     <App
@@ -50,8 +51,7 @@ export default (App) => {
                 Head.rewind();
             }
 
-            // TODO: add types to ArtemisState to capture `data`
-            artemisState.data = artemis.cache.extract();
+            artemisState = artemis.cache.extract();
 
             return {
                 ...appProps,
@@ -61,7 +61,7 @@ export default (App) => {
 
         constructor(props) {
             super(props);
-            this.artemisClient = props.artemisClient || initArtemis(props.artemisState.data);
+            this.artemisClient = props.artemisClient || initArtemis(props.artemisState);
         }
 
         public render() {

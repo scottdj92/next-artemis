@@ -4,7 +4,7 @@
   "description": "A companion for your Next.js app using Apollo",
   "main": "index.js",
   "scripts": {
-    "test": "npm run test",
+    "test": "jest",
     "build": "tsc",
     "dev": "parcel ./example/index.html"
   },
@@ -24,14 +24,21 @@
   },
   "homepage": "https://github.com/scottdj92/next-artemis#readme",
   "devDependencies": {
+    "@types/isomorphic-fetch": "0.0.34",
+    "@types/jest": "^23.1.1",
     "@types/next": "^6.0.1",
     "@types/react": "^16.4.1",
     "@types/react-dom": "^16.0.6",
+    "apollo-test-utils": "^0.3.2",
     "enzyme": "^3.3.0",
+    "graphql": "^0.13.2",
+    "graphql-tag": "^2.9.2",
+    "graphql-tools": "^3.0.2",
     "jest": "^23.1.0",
     "parcel-bundler": "^1.9.2",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
+    "ts-jest": "^22.4.6",
     "tslint": "^5.10.0",
     "typescript": "^2.9.2"
   },
@@ -39,8 +46,27 @@
     "apollo-cache-inmemory": "^1.2.5",
     "apollo-client": "^2.3.5",
     "apollo-link-http": "^1.5.4",
-    "isomorphic-unfetch": "^2.0.0",
+    "es6-promise": "^4.2.4",
+    "isomorphic-fetch": "^2.2.1",
     "next": "^6.0.3",
     "react-apollo": "^2.1.6"
+  },
+  "jest": {
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js"
+    ],
+    "transform": {
+      "^.+\\.(ts|tsx)$": "ts-jest"
+    },
+    "globals": {
+      "ts-jest": {
+        "tsConfigFile": "tsconfig.json"
+      }
+    },
+    "testMatch": [
+      "**/__tests__/*.+(ts|tsx|js)"
+    ]
   }
 }
