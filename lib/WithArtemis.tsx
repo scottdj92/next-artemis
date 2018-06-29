@@ -18,7 +18,7 @@ interface IArtemisMembers<T> {
 export default (App) => {
     return class Artemis<T extends IArtemisMembers<any>> extends React.Component<IProps<T>, {}> {
         public static displayName = "withArtemis(App)";
-        public static artemisClient;
+        public artemisClient: ApolloClient<any>;
         public static async getInitialProps(ctx) {
             const { Component, router } = ctx;
 
@@ -28,7 +28,6 @@ export default (App) => {
             }
 
             let artemisState = {};
-            // TODO: don't pass in an empty object here
             const artemis = initArtemis();
             try {
                 await getDataFromTree(

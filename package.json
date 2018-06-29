@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "jest",
-    "build": "tsc",
+    "build": "rollup -c",
     "dev": "parcel ./example/index.html"
   },
   "repository": {
@@ -27,6 +27,7 @@
     "@types/isomorphic-fetch": "0.0.34",
     "@types/jest": "^23.1.1",
     "@types/next": "^6.0.1",
+    "@types/node": "^10.5.0",
     "@types/react": "^16.4.1",
     "@types/react-dom": "^16.0.6",
     "apollo-test-utils": "^0.3.2",
@@ -38,6 +39,8 @@
     "parcel-bundler": "^1.9.2",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
+    "rollup": "^0.62.0",
+    "rollup-plugin-typescript2": "^0.15.1",
     "ts-jest": "^22.4.6",
     "tslint": "^5.10.0",
     "typescript": "^2.9.2"

@@ -14,7 +14,7 @@ if (!isBrowser) {
 
 export type ArtemisState<T extends {}> = T;
 
-function createArtemis<T>(initialState: ArtemisState<T>): ApolloClient<any> {
+function createArtemis<T>(initialState?: ArtemisState<T>): ApolloClient<any> {
     return new ApolloClient({
         connectToDevTools: isBrowser,
         ssrMode: !isBrowser,
@@ -26,7 +26,7 @@ function createArtemis<T>(initialState: ArtemisState<T>): ApolloClient<any> {
     });
 }
 
-export default function initArtemis<T>(initialState: ArtemisState<T>): ApolloClient<T> {
+export default function initArtemis<T>(initialState?: ArtemisState<T>): ApolloClient<T> {
     // create a new client for each server-side request
     // avoids shared data connections
     if (!isBrowser) {
