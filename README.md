@@ -52,6 +52,7 @@ const client = initArtemis({
     }
 });
 ```
+You'd import this and use it wherever you'd use an instance of ApolloClient.
 
 ## Roadmap
 * Improve unit tests
