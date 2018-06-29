@@ -64,3 +64,5 @@ typings/
 !rollup.config.js
 
 dist/
+
+.rpt2_cache
