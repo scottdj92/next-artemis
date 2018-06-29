@@ -4,8 +4,6 @@ import { getDataFromTree } from "react-apollo";
 import React from "react";
 import { ApolloClient } from "apollo-client";
 
-const isBrowser = typeof window !== undefined;
-
 interface IProps<T> {
     artemisClient: ApolloClient<ArtemisState<T>>;
     artemisState: ArtemisState<T>;
@@ -14,6 +12,8 @@ interface IProps<T> {
 interface IArtemisMembers<T> {
     artemisClient: ApolloClient<ArtemisState<T>>;
 }
+
+const isBrowser = typeof window !== undefined;
 
 export default (App) => {
     return class Artemis<T extends IArtemisMembers<any>> extends React.Component<IProps<T>, {}> {
