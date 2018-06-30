@@ -33,7 +33,7 @@ import { ApolloClient } from "apollo-client";
 import WithArtemis, { ArtemisState } from "next-artemis";
 
 interface AppProps {
-    artemisClient: ArtemisState<any>; //where <any> is your apollo client shape
+    artemisClient: ApolloClient<ArtemisState<any>>; //where <any> is your apollo client shape
 }
 
 class MyApp extends App<AppProps> {
