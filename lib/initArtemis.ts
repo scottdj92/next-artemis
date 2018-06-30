@@ -14,7 +14,7 @@ if (!isBrowser) {
 
 export type ArtemisState<T extends {}> = T;
 
-function createArtemis<T>(initialState?: ArtemisState<T>): ApolloClient<T> {
+function createArtemis<T>(initialState?: ArtemisState<T>): ApolloClient<any> {
     return new ApolloClient({
         connectToDevTools: isBrowser,
         ssrMode: !isBrowser,
