@@ -4,23 +4,36 @@ A companion for your Apollo app with Next.js
 ## Features
 * Built with TypeScript for extended stability
 * Built also with Jest and Enzyme for unit testing
-* Apollo cache invalidation + cache hydration + single app connections (a single connection will only have a single client)
+* Apollo cache hydration + single app connections (a single connection will only have a single client)
 * Exported types and interfaces
+* Hooks into NextJS's configuration object
 
 # Usage
-`WithArtemis` is your default export. You import this wherever you'd like to use the provider.
+Artemis will hook into NextJS's `getConfig()` object. You can provide it via `next.config.js`:
+
+```tsx
+module.exports = withSass(withTypescript({
+    publicRuntimeConfig: {
+        graphQLEndpoint: // your GraphQL endpoint,
+    }
+}));
+```
+
+If no object is provided, Artemis will fall back to `localhost:5000/graphql`.
+
+`WithArtemis` is next-artemis's default export. You import this wherever you'd like to use the client. It passes down a prop called `artemisClient` to your wrapped component, which is a wrapped instance of `ApolloClient`.
 
 In _app.tsx:
 
 ```tsx
-import App, { Cointainer } from "next/app";
+import App, { Container } from "next/app";
 import React from "react";
 import { ApolloProvider } from "apollo-provider";
 import { ApolloClient } from "apollo-client";
 import WithArtemis, { ArtemisState } from "next-artemis";
 
 interface AppProps {
-    artemisClient: ArtemisState<ApolloClient<any>>; //where <any> is your apollo client shape
+    artemisClient: ApolloClient<ArtemisState<any>>; //where <any> is your apollo client shape
 }
 
 class MyApp extends App<AppProps> {

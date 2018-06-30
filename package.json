@@ -1,6 +1,6 @@
 {
   "name": "next-artemis",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "A companion for your Next.js app using Apollo",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -41,19 +41,22 @@
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
     "rollup": "^0.62.0",
+    "rollup-plugin-peer-deps-external": "^2.2.0",
     "rollup-plugin-typescript2": "^0.15.1",
     "ts-jest": "^22.4.6",
     "tslint": "^5.10.0",
     "typescript": "^2.9.2"
   },
-  "dependencies": {
+  "peerDependencies": {
     "apollo-cache-inmemory": "^1.2.5",
     "apollo-client": "^2.3.5",
     "apollo-link-http": "^1.5.4",
-    "es6-promise": "^4.2.4",
-    "isomorphic-fetch": "^2.2.1",
     "next": "^6.0.3",
     "react-apollo": "^2.1.6"
+  },
+  "dependencies": {
+    "es6-promise": "^4.2.4",
+    "isomorphic-fetch": "^2.2.1"
   },
   "jest": {
     "moduleFileExtensions": [

@@ -19,7 +19,7 @@ function createArtemis<T>(initialState?: ArtemisState<T>): ApolloClient<any> {
         connectToDevTools: isBrowser,
         ssrMode: !isBrowser,
         link: new HttpLink({
-            uri: publicRuntimeConfig.graphQLEndpoint,
+            uri: publicRuntimeConfig.graphQLEndpoint || "http://localhost:5000/graphql",
             credentials: "same-origin",
         }),
         cache: new InMemoryCache().restore(initialState || {}),
